@@ -9,7 +9,8 @@ export interface IDetectionZoneLayout extends IBaseGameComponentLayout {
 	zoneName?: ZoneName;
 	// height: number;
 	// width: number;
-	radius: number;
+	MaxRadius: number;
+	MinRadius: number;
 	color: PIXI.ColorSource;
 	children?: GameLayouts[];
 }
@@ -22,7 +23,8 @@ export class DetectionZoneComponent extends AXContainer {
 	protected hover: AXGraphics;
 	// protected rectWidth: number;
 	// protected rectHeight: number;
-	protected circleRadius: number;
+	protected MaxRadius: number;
+	protected MinRadius: number;
 	protected isMoving: boolean = false;
 	private lineColor: PIXI.ColorSource = 0x00ffff;
 
@@ -44,13 +46,22 @@ export class DetectionZoneComponent extends AXContainer {
 		//making a circle instead of rectangle
 
 
-		const radius = this.circleRadius
-		gr.drawCircle(0, 0, radius);
+		// Draws circles with configurable radii
+		const maxRadius = this.MaxRadius;
+		const MinRadius = this.MinRadius;
+
+		gr.drawCircle(0, 0, maxRadius);
+		gr.drawCircle(0, 0, MinRadius);
+
+		// Draws center with set radius
+		gr.beginFill(this.lineColor);
+		gr.drawCircle(0, 0, 10);
+		gr.endFill();
 
 		this.addChild(gr);
 
-		this.hover.width = radius * 2;
-		this.hover.height = radius * 2;
+		this.hover.width = 100;
+		this.hover.height = 100;
 
 
 		this.on('pointerdown', (event) => {
@@ -74,14 +85,11 @@ export class DetectionZoneComponent extends AXContainer {
 	set color(val: PIXI.ColorSource) {
 		this.lineColor = val;
 	}
-	// set width(val: number) {
-	// 	this.rectWidth = val;
-	// }
-	// set height(val: number) {
-	// 	this.rectHeight = val;
-	// }
-
-	set radius(val: number) {
-		this.circleRadius = val;
+	set maxRadius(val: number) {
+		this.MaxRadius = val;
 	}
+	set minRadius(val: number) {
+		this.MaxRadius = val;
+	}
+
 }

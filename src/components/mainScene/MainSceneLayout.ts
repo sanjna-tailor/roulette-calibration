@@ -45,30 +45,31 @@ export const MainSceneLayout: IMainSceneLayout = {
 			height: 1080,
 		},
 		{
-			name: 'outerRadius',
+			name: 'radiusGraphic',
 			selector: 'detectionZone',
 			zoneName: 'top',
-			radius: 320,
-			y: 0,
-			color: 0x0047AB,
-
-		},
-		{
-			name: 'botR',
-			selector: 'detectionZone',
-			zoneName: 'top',
-			radius: 250,
+			MaxRadius: 325,
+			MinRadius: 250,
 			y: 0,
 			color: 0x3bfc19,
+
 		},
-		{
-			name: 'rightR',
-			selector: 'detectionZone',
-			zoneName: 'top',
-			radius:10,
-			x: 160,
-			color: 0xFF00FF,
-		},
+		// {
+		// 	name: 'botR',
+		// 	selector: 'detectionZone',
+		// 	zoneName: 'top',
+		// 	radius: 250,
+		// 	y: 0,
+		// 	color: 0x3bfc19,
+		// },
+		// {
+		// 	name: 'rightR',
+		// 	selector: 'detectionZone',
+		// 	zoneName: 'top',
+		// 	radius:10,
+		// 	x: 160,
+		// 	color: 0xFF00FF,
+		//},
 
 		
 		// {

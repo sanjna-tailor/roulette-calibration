@@ -7,7 +7,8 @@ export const DetectionZoneLayout: IDetectionZoneLayout = {
 	cursor: 'pointer',
 	//height: 50,
 	//width: 100,
-	radius: 200,
+	MaxRadius: 200,
+	MinRadius: 50,
 	color: 0x00ffff,
 	children: [
 		{
