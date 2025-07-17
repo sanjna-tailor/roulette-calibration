@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"module": "ES6",
+		"target": "ES6",
+		"jsx": "react",
+		"allowJs": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"skipLibCheck": true
+	},
+	// "include": ["node_modules/@sandsb2b/areax-pixi-core", "src", "typings"]
+	"include": ["src", "typings"]
+}
