@@ -1,5 +1,5 @@
 import { LINE_JOIN } from 'pixi.js';
-import { IDetectionZoneLayout } from './DetetionZoneComponent';
+import { IDetectionZoneLayout } from './DetectionZoneComponent';
 
 export const DetectionZoneLayout: IDetectionZoneLayout = {
 	selector: 'detectionZone',

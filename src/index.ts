@@ -8,7 +8,7 @@ import {
 } from '@sandsb2b/areax-pixi-core';
 import { GameStartAction } from './actions/GameStartAction';
 import { PrepareResourceAction } from './actions/PrepareResourcesAction';
-import { DetectionZoneComponent } from './components/detectionZone/DetetionZoneComponent';
+import { DetectionZoneComponent } from './components/detectionZone/DetectionZoneComponent';
 import { LoadingSceneComponent } from './components/loadingScene/LoadingSceneComponent';
 import { MainSceneComponent } from './components/mainScene/MainSceneComponent';
 import './first';

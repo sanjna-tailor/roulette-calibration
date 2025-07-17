@@ -9,7 +9,7 @@ import {
 } from '@sandsb2b/areax-pixi-core';
 import connectDolbyStream from '../../helpers/videoStream';
 import { GameLayouts } from '../../types/GameLayouts';
-import { DetectionZoneComponent } from '../detectionZone/DetetionZoneComponent';
+import { DetectionZoneComponent } from '../detectionZone/DetectionZoneComponent';
 import { MainSceneLayout } from './MainSceneLayout';
 import { MainSceneMediator } from './MainSceneMediator';
 import { Coordinates } from '../../types/GameEvents';

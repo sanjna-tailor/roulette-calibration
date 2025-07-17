@@ -1,5 +1,5 @@
 import { AXCoreLayouts } from '@sandsb2b/areax-pixi-core';
-import { IDetectionZoneLayout } from '../components/detectionZone/DetetionZoneComponent';
+import { IDetectionZoneLayout } from '../components/detectionZone/DetectionZoneComponent';
 import { IMainSceneLayout } from '../components/mainScene/MainSceneComponent';
 import { layoutTemplates } from '../layoutTemplates';
 
