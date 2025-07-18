@@ -9,13 +9,14 @@ import {
 import { GameStartAction } from './actions/GameStartAction';
 import { PrepareResourceAction } from './actions/PrepareResourcesAction';
 import { DetectionZoneComponent } from './components/detectionZone/DetectionZoneComponent';
+import { SquareFrameComponent } from './components/detectionZone/SquareFrameComponent';
 import { LoadingSceneComponent } from './components/loadingScene/LoadingSceneComponent';
 import { MainSceneComponent } from './components/mainScene/MainSceneComponent';
 import './first';
 import { layoutTemplates } from './layoutTemplates';
 import { GameEvents } from './types/GameEvents';
 
-const components: IGameComponentConstructor[] = [LoadingSceneComponent, MainSceneComponent, DetectionZoneComponent];
+const components: IGameComponentConstructor[] = [LoadingSceneComponent, MainSceneComponent, DetectionZoneComponent, SquareFrameComponent];
 
 const actions: IGameActionConstructor[] = [GameStartAction, PrepareResourceAction];
 
