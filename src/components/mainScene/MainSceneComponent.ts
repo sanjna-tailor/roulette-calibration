@@ -11,6 +11,7 @@ import connectDolbyStream from '../../helpers/videoStream';
 import { GameLayouts } from '../../types/GameLayouts';
 import { DetectionZoneComponent } from '../detectionZone/DetectionZoneComponent';
 import { SquareFrameComponent } from '../detectionZone/SquareFrameComponent';
+import { SensorZoneComponent } from '../detectionZone/SensorZoneComponent';
 import { MainSceneLayout } from './MainSceneLayout';
 import { MainSceneMediator } from './MainSceneMediator';
 import { Coordinates } from '../../types/GameEvents';
@@ -31,6 +32,7 @@ export class MainSceneComponent extends AXContainer {
 	protected rightR: DetectionZoneComponent;
 	protected leftR: DetectionZoneComponent;
 	protected squareGraphic: SquareFrameComponent;
+	protected sensor1: SensorZoneComponent;
 	protected applyBtn: AXButton;
 	protected _dark: AXGraphics;
 	public targetSize: AXGraphics;

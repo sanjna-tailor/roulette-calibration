@@ -62,34 +62,34 @@ export const MainSceneLayout: IMainSceneLayout = {
 			y: 0,
 			color: 0x00ffff,
 		},
+		{
+			name: 'sensor1',
+			selector: 'sensorZone',
+			height: 100,
+			width: 100,
+			x: 250,
+			y: 100,
+			color: 0x3bfc19,
+		},
+		{
+			name: 'sensor2',
+			selector: 'sensorZone',
+			height: 100,
+			width: 100,
+			x: -250,
+			y: 100,
+			color: 0x3bfc19,
+		},
+		{
+			name: 'sensor3',
+			selector: 'sensorZone',
+			height: 100,
+			width: 100,
+			x: 0,
+			y: -250,
+			color: 0x3bfc19,
+		},
 
-		// {
-		// 	name: 'botR',
-		// 	selector: 'detectionZone',
-		// 	zoneName: 'top',
-		// 	radius: 250,
-		// 	y: 0,
-		// 	color: 0x3bfc19,
-		// },
-		// {
-		// 	name: 'rightR',
-		// 	selector: 'detectionZone',
-		// 	zoneName: 'top',
-		// 	radius:10,
-		// 	x: 160,
-		// 	color: 0xFF00FF,
-		//},
-
-		
-		// {
-		// 	name: 'leftR',
-		// 	selector: 'detectionZone',
-		// 	zoneName: 'top',
-		// 	height: 140,
-		// 	width: 46,
-		// 	x: -160,
-		// 	color: 0x9219fc,
-		// },
 
 		{
 			name: 'applyBtn',
