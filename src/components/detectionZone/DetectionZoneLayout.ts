@@ -9,7 +9,9 @@ export const DetectionZoneLayout: IDetectionZoneLayout = {
 	//width: 100,
 	maxRadius: 200,
 	minRadius: 50,
-	color: 0x00ffff,
+	centerColor: 0x00ffff,
+	minColor: 0x00ffff,
+	maxColor: 0x00ffff,
 	children: [
 		{
 			name: 'hover',

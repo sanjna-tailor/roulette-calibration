@@ -11,7 +11,9 @@ export interface IDetectionZoneLayout extends IBaseGameComponentLayout {
 	// width: number;
 	maxRadius: number;
 	minRadius: number;
-	color: PIXI.ColorSource;
+	centerColor: PIXI.ColorSource;
+	minColor: PIXI.ColorSource;
+	maxColor: PIXI.ColorSource;
 	children?: GameLayouts[];
 }
 
@@ -26,35 +28,25 @@ export class DetectionZoneComponent extends AXContainer {
 	protected maxRadius: number;
 	protected minRadius: number;
 	protected isMoving: boolean = false;
-	private lineColor: PIXI.ColorSource = 0x00ffff;
+	private centerColor: PIXI.ColorSource;
+	private minColor: PIXI.ColorSource;
+	private maxColor: PIXI.ColorSource;
 
 	protected onAdded(): void {
 		const gr = new PIXI.Graphics();
-		gr.lineStyle(7, this.lineColor);
-		//making a rectangle
-		// gr.moveTo(-this.rectWidth / 2, -this.rectHeight / 2);
-		// gr.lineTo(this.rectWidth / 2, -this.rectHeight / 2);
-		// gr.lineTo(this.rectWidth / 2, this.rectHeight / 2);
-		// gr.lineTo(-this.rectWidth / 2, this.rectHeight / 2);
-		// gr.lineTo(-this.rectWidth / 2, -(this.rectHeight / 2 + 3)); // + 3 is a hack to fix little visual bug in the last corner of rect drawing
-
-		// this.addChild(gr);
-
-		// this.hover.width = 180;
-		// this.hover.height = 180;
-
-		//making a circle instead of rectangle
-
-
 		// Draws circles with configurable radii
+
 		const maxRadius = this.maxRadius;
 		const minRadius = this.minRadius;
 
+		gr.lineStyle(7, this.maxColor);
 		gr.drawCircle(0, 0, maxRadius);
+		gr.lineStyle(7, this.minColor);
 		gr.drawCircle(0, 0, minRadius);
 
 		// Draws center with set radius
-		gr.beginFill(this.lineColor);
+		gr.lineStyle(7, this.centerColor);
+		gr.beginFill(this.centerColor);
 		gr.drawCircle(0, 0, 10);
 		gr.endFill();
 
@@ -82,9 +74,16 @@ export class DetectionZoneComponent extends AXContainer {
 		});
 	}
 
-	set color(val: PIXI.ColorSource) {
-		this.lineColor = val;
+	set CenterColor(val: PIXI.ColorSource) {
+		this.centerColor = val;
 	}
+	set MinColor(val: PIXI.ColorSource) {
+		this.minColor = val;
+	}
+	set MaxColor(val: PIXI.ColorSource) {
+		this.maxColor = val;
+	}
+
 	set MaxRadius(val: number) {
 		this.maxRadius = val;
 	}

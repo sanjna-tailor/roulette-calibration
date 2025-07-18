@@ -51,8 +51,9 @@ export const MainSceneLayout: IMainSceneLayout = {
 			maxRadius: 325,
 			minRadius: 250,
 			y: 0,
-			color: 0x3bfc19,
-
+			centerColor: 0xFF00FF,
+			minColor: 0x3BFC19,
+			maxColor: 0x362AE4,
 		},
 		{ 
 			name: 'squareGraphic',
@@ -60,7 +61,7 @@ export const MainSceneLayout: IMainSceneLayout = {
 			sideLength: 1000,
 			x: 0,
 			y: 0,
-			color: 0x00ffff,
+			color: 0xFF0505,
 		},
 		{
 			name: 'sensor1',
@@ -69,7 +70,7 @@ export const MainSceneLayout: IMainSceneLayout = {
 			width: 100,
 			x: 250,
 			y: 100,
-			color: 0x3bfc19,
+			color: 0xFFAE00,
 		},
 		{
 			name: 'sensor2',
@@ -78,7 +79,7 @@ export const MainSceneLayout: IMainSceneLayout = {
 			width: 100,
 			x: -250,
 			y: 100,
-			color: 0x3bfc19,
+			color: 0xFFAE00,
 		},
 		{
 			name: 'sensor3',
@@ -87,7 +88,7 @@ export const MainSceneLayout: IMainSceneLayout = {
 			width: 100,
 			x: 0,
 			y: -250,
-			color: 0x3bfc19,
+			color: 0xFFAE00,
 		},
 
 
