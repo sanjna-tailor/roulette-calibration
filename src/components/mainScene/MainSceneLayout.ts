@@ -48,12 +48,21 @@ export const MainSceneLayout: IMainSceneLayout = {
 			name: 'radiusGraphic',
 			selector: 'detectionZone',
 			zoneName: 'top',
-			MaxRadius: 325,
-			MinRadius: 250,
+			maxRadius: 325,
+			minRadius: 250,
 			y: 0,
 			color: 0x3bfc19,
 
 		},
+		{ 
+			name: 'squareGraphic',
+			selector: 'squareFrame',
+			sideLength: 1000,
+			x: 0,
+			y: 0,
+			color: 0x00ffff,
+		},
+
 		// {
 		// 	name: 'botR',
 		// 	selector: 'detectionZone',
