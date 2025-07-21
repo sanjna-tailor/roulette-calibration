@@ -9,8 +9,12 @@ export type GameEvents = AXCoreEvents & {
 };
 
 export type Coordinates = {
-	top: number[],
-	bottom: number[],
-	left: number[],
-	right: number[]
+	// top: number[],
+	// bottom: number[],
+	// left: number[],
+	// right: number[]
+	center: number[];
+	minRadius: number;
+	maxRadius: number;
+	squareCorner: number[];
 }

@@ -27,12 +27,15 @@ export interface IMainSceneLayout extends IBaseGameComponentLayout {
 	mediator: MainSceneMediator,
 })
 export class MainSceneComponent extends AXContainer {
-	protected topR: DetectionZoneComponent;
-	protected botR: DetectionZoneComponent;
-	protected rightR: DetectionZoneComponent;
-	protected leftR: DetectionZoneComponent;
+	// protected topR: DetectionZoneComponent;
+	// protected botR: DetectionZoneComponent;
+	// protected rightR: DetectionZoneComponent;
+	// protected leftR: DetectionZoneComponent;
+	protected radiusGraphic: DetectionZoneComponent;
 	protected squareGraphic: SquareFrameComponent;
 	protected sensor1: SensorZoneComponent;
+	protected sensor2: SensorZoneComponent;
+	protected sensor3: SensorZoneComponent;
 	protected applyBtn: AXButton;
 	protected _dark: AXGraphics;
 	public targetSize: AXGraphics;
@@ -78,8 +81,10 @@ export class MainSceneComponent extends AXContainer {
 		document.addEventListener('click', this.onFirstClick.bind(this), { once: true });
 		document.addEventListener('touchend', this.onFirstClick.bind(this), { once: true });
 
+		//starts video stream given streamId and streamToken
 		if (this.streamId !== '') this.initiateStream();
 
+		//activates saving functionality, ensuring button is only clicked once while saving
 		this.applyBtn.on('buttonClick', async () => {
 			if (this.streamId === '') return;
 
@@ -92,7 +97,8 @@ export class MainSceneComponent extends AXContainer {
 
 
 
-		this.getCoordinates();
+		//this.getCoordinates();
+
 		////
 
 		// const radiusSlider = this.getChildByName('radiusSlider') as any;
@@ -148,6 +154,8 @@ export class MainSceneComponent extends AXContainer {
 		this.videoSprite.scale.set(scale);
 	}
 
+	// Method to get coordinates from the server and set them to the respective rectangles
+	// This method is called when the component is initialized or when the streamId changes
 	public async getCoordinates(): Promise<any> {
 		const url = 'https://stream-coords.sds.red/coordinates?stream=' + this.streamId;
 
@@ -173,45 +181,82 @@ export class MainSceneComponent extends AXContainer {
 		}
 	}
 
+	// Method to set the coordinates of the rectangles based on the data received from the server
 	private setCoordinates(data: Coordinates): void {
-		const { top, bottom, left, right } = data;
-		if (top[0] !== 0 && top[1] !== 0) this.topR.position.set(top[0], top[1]);
-		if (bottom[0] !== 0 && bottom[1] !== 0) this.botR.position.set(bottom[0], bottom[1]);
-		if (left[0] !== 0 && left[1] !== 0) this.leftR.position.set(left[0], left[1]);
-		if (right[0] !== 0 && right[1] !== 0) this.rightR.position.set(right[0], right[1]);
+		// const { top, bottom, left, right } = data;
+		// if (top[0] !== 0 && top[1] !== 0) this.topR.position.set(top[0], top[1]);
+		// if (bottom[0] !== 0 && bottom[1] !== 0) this.botR.position.set(bottom[0], bottom[1]);
+		// if (left[0] !== 0 && left[1] !== 0) this.leftR.position.set(left[0], left[1]);
+		// if (right[0] !== 0 && right[1] !== 0) this.rightR.position.set(right[0], right[1]);
+
+		const { center, maxRadius, minRadius, squareCorner } = data;
+		if (data.center[0] !== 0 && data.center[1] !== 0) {
+			this.radiusGraphic.position.set(data.center[0], data.center[1]);
+		}
+
+
+
+
 	}
 
+	//Method to send the coordinates to the server
 	public async logCoordinates(): Promise<any> {
-		const url = 'https://stream-coords.sds.red/coordinates';
 
-		const bodyData: { streamID: string, coords: Coordinates } = {
-			streamID: this.streamId,
-			coords: {
-				top: [this.topR.x, this.topR.y],
-				bottom: [this.botR.x, this.botR.y],
-				left: [this.leftR.x, this.leftR.y],
-				right: [this.rightR.x, this.rightR.y]
-			}
-		}
+		//get top left corner of bounding rectangle of the video sprite
+		const videoBounds = this.videoSprite.getBounds();
+		console.log('Video bounds:', videoBounds);
 
-		try {
-			const response = await fetch(url, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-API-Key': 'secret123456789'
-				},
-				body: JSON.stringify(bodyData)
-			});
+		
+		//get top left corner of the square frame
+		const squareBounds = this.squareGraphic.getBounds();
+		const frameTopLeft = [squareBounds.x + 21.5 - videoBounds.x, squareBounds.y + 21.5 - videoBounds.y]
 
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
 
-			const data = response.json();
-			console.log('Response:', data);
-		} catch (error) {
-			console.error('Error:', error);
-		}
+
+		//tempory console output of coordinates
+		//square frame : + 25 of the hover, -3.5 for line thickness - videoBounds so postion is relative to video sprite
+		console.log('Logging coordinates...');
+		console.log({frame: [frameTopLeft[0], frameTopLeft[1]],
+					radius: [this.radiusGraphic.x, this.radiusGraphic.y],
+					sensor1: [this.sensor1.x, this.sensor1.y],
+					sensor2: [this.sensor2.x, this.sensor2.y],
+					sensor3: [this.sensor3.x, this.sensor3.y],
+
+
+
+
+		})
+
+	// 	const url = 'https://stream-coords.sds.red/coordinates';
+
+	// 	const bodyData: { streamID: string, coords: Coordinates } = {
+	// 		streamID: this.streamId,
+	// 		coords: {
+	// 			top: [this.topR.x, this.topR.y],
+	// 			bottom: [this.botR.x, this.botR.y],
+	// 			left: [this.leftR.x, this.leftR.y],
+	// 			right: [this.rightR.x, this.rightR.y]
+	// 		}
+	// 	}
+
+	// 	try {
+	// 		const response = await fetch(url, {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				'X-API-Key': 'secret123456789'
+	// 			},
+	// 			body: JSON.stringify(bodyData)
+	// 		});
+
+	// 		if (!response.ok) {
+	// 			throw new Error(`HTTP error! status: ${response.status}`);
+	// 		}
+
+	// 		const data = response.json();
+	// 		console.log('Response:', data);
+	// 	} catch (error) {
+	// 		console.error('Error:', error);
+	// 	}
 	}
 }
