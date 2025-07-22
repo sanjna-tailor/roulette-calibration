@@ -216,10 +216,10 @@ export class MainSceneComponent extends AXContainer {
 
 		console.log('Logging coordinates...');
 		console.log({frame: [frameTopLeftCoordinate[0], frameTopLeftCoordinate[1]],
-					radius: [radiusCoordinate[0], radiusCoordinate[1]],
-					sensor1: [this.sensor1.x + halfVideoWidth, this.sensor1.y + halfVideoHeight],
-					sensor2: [this.sensor2.x + halfVideoWidth, this.sensor2.y + halfVideoHeight],
-					sensor3: [this.sensor3.x + halfVideoWidth, this.sensor3.y + halfVideoHeight],
+					radius: [radiusCoordinate[0] - frameTopLeftCoordinate[0], radiusCoordinate[1] - frameTopLeftCoordinate[1]],
+					sensor1: [this.sensor1.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor1.y + halfVideoHeight - frameTopLeftCoordinate[1]],
+					sensor2: [this.sensor2.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor2.y + halfVideoHeight - frameTopLeftCoordinate[1]],
+					sensor3: [this.sensor3.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor3.y + halfVideoHeight - frameTopLeftCoordinate[1]],
 
 		})
 
