@@ -7,7 +7,6 @@ export const SliderLayout: ISliderLayout = {
   cursor: 'pointer',
   width: 300,
   height: 40,
-  color: 0x000000,
   children: [
     {
       name: 'track',

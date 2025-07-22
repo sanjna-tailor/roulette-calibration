@@ -94,8 +94,9 @@ export const MainSceneLayout: IMainSceneLayout = {
 			selector: 'slider',
 			width: 300,
 			height: 40,
-			color: 0x00ffff,
 			position: { x: 600, y: 285 },
+			lowerLimit: 50,
+			upperLimit: 1080,
 		},
 		{
 			name: 'applyBtn',

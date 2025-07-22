@@ -7,7 +7,8 @@ export interface ISliderLayout extends IBaseGameComponentLayout {
   selector: 'slider';
   width: number;
   height: number;
-  color: PIXI.ColorSource;
+  lowerLimit?: number;
+  upperLimit?: number;
   children?: GameLayouts[];
 }
 
@@ -18,23 +19,31 @@ export interface ISliderLayout extends IBaseGameComponentLayout {
 export class SliderComponent extends AXContainer {
   protected track: PIXI.Graphics;
   protected knob: PIXI.Graphics;
+  protected valueText: PIXI.Text;
   private isDragging: boolean = false;
   private dragOffset: PIXI.Point | null = null;
   private sliderWidth: number = 200;
   private sliderHeight: number = 40;
   private knobRadius: number = 15;
-  private trackColor: PIXI.ColorSource = 0x00ffff;
+  private trackColor: PIXI.ColorSource = 0xffffff;
   private knobColor: PIXI.ColorSource = 0xffffff;
+  private upperLimit: number = 100;
+  private lowerLimit: number = 1;
 
   protected onAdded(): void {
     this.track = new PIXI.Graphics();
     this.knob = new PIXI.Graphics();
+    this.valueText = new PIXI.Text(this.lowerLimit.toString(), { fill: 0xffffff, fontSize: 18 });
 
     this.drawTrack();
     this.drawKnob();
 
     this.addChild(this.track);
     this.addChild(this.knob);
+    this.addChild(this.valueText);
+
+    this.valueText.x = this.sliderWidth + 10;
+    this.valueText.y = this.sliderHeight / 2 - this.valueText.height / 2;
 
     (this.knob as any).interactive = true;
     (this.knob as any).cursor = 'pointer';
@@ -51,6 +60,14 @@ export class SliderComponent extends AXContainer {
       let newX = pointerPos.x - this.dragOffset.x;
       newX = Math.max(this.knobRadius, Math.min(newX, this.sliderWidth - this.knobRadius));
       this.knob.x = newX;
+
+      //Update llimit based on knob position
+      const ratio = (this.knob.x - this.knobRadius) / (this.sliderWidth - 2 * this.knobRadius);
+      this.lowerLimit = Math.round(1 + ratio * (this.upperLimit - 1));
+      this.valueText.text = this.lowerLimit.toString();
+      this.valueText.x = this.knob.x + this.knobRadius + 10;
+
+
     });
 
     (this.knob as any).on('pointerup', () => {
@@ -83,12 +100,14 @@ export class SliderComponent extends AXContainer {
   set Width(val: number) {
     this.sliderWidth = val;
     this.drawTrack();
+    this.valueText.x = this.sliderWidth + 10;
   }
 
   set Height(val: number) {
     this.sliderHeight = val;
     this.drawTrack();
     this.drawKnob();
+    this.valueText.y = this.sliderHeight / 2 - this.valueText.height / 2;
   }
 
   set TrackColor(val: PIXI.ColorSource) {
@@ -99,5 +118,17 @@ export class SliderComponent extends AXContainer {
   set KnobColor(val: PIXI.ColorSource) {
     this.knobColor = val;
     this.drawKnob();
+  }
+
+  set Limit(val: number) {
+    this.upperLimit = val;
+  }
+
+  set LowerLimit(val: number) {
+    this.lowerLimit = val;
+  }
+
+  get LLimit(): number {
+    return this.lowerLimit;
   }
 }
