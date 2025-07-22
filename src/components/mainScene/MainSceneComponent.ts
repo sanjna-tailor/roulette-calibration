@@ -12,6 +12,7 @@ import { GameLayouts } from '../../types/GameLayouts';
 import { DetectionZoneComponent } from '../detectionZone/DetectionZoneComponent';
 import { SquareFrameComponent } from '../detectionZone/SquareFrameComponent';
 import { SensorZoneComponent } from '../detectionZone/SensorZoneComponent';
+import { SliderComponent } from '../detectionZone/SliderComponent';
 import { MainSceneLayout } from './MainSceneLayout';
 import { MainSceneMediator } from './MainSceneMediator';
 import { Coordinates } from '../../types/GameEvents';
@@ -36,6 +37,7 @@ export class MainSceneComponent extends AXContainer {
 	protected sensor1: SensorZoneComponent;
 	protected sensor2: SensorZoneComponent;
 	protected sensor3: SensorZoneComponent;
+	protected minRadiusSlider: SliderComponent;
 	protected applyBtn: AXButton;
 	protected _dark: AXGraphics;
 	public targetSize: AXGraphics;

@@ -90,8 +90,13 @@ export const MainSceneLayout: IMainSceneLayout = {
 			y: -250,
 			color: 0xFFAE00,
 		},
-
-
+		{ name: 'minRadiusSlider',
+			selector: 'slider',
+			width: 300,
+			height: 40,
+			color: 0x00ffff,
+			position: { x: 600, y: 285 },
+		},
 		{
 			name: 'applyBtn',
 			selector: 'button',

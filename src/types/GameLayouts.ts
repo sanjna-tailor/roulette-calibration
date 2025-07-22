@@ -3,9 +3,10 @@ import { IDetectionZoneLayout } from '../components/detectionZone/DetectionZoneC
 import { ISquareFrameLayout } from '../components/detectionZone/SquareFrameComponent';
 import { ISensorZoneLayout } from '../components/detectionZone/SensorZoneComponent';
 import { IMainSceneLayout } from '../components/mainScene/MainSceneComponent';
+import { ISliderLayout } from '../components/detectionZone/SliderComponent';
 import { layoutTemplates } from '../layoutTemplates';
 
-type Layouts = AXCoreLayouts | IMainSceneLayout | IDetectionZoneLayout | ISquareFrameLayout | ISensorZoneLayout;
+type Layouts = AXCoreLayouts | IMainSceneLayout | IDetectionZoneLayout | ISquareFrameLayout | ISensorZoneLayout | ISliderLayout;
 
 export type GameLayouts = Layouts & {
 	template?: keyof typeof layoutTemplates;
