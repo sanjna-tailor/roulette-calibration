@@ -202,28 +202,24 @@ export class MainSceneComponent extends AXContainer {
 	//Method to send the coordinates to the server
 	public async logCoordinates(): Promise<any> {
 
-		//get top left corner of bounding rectangle of the video sprite
-		const videoBounds = this.videoSprite.getBounds();
-		console.log('Video bounds:', videoBounds);
+	//Temporarily save coordinates as console log statements
 
-		
-		//get top left corner of the square frame
-		const squareBounds = this.squareGraphic.getBounds();
-		const frameTopLeft = [squareBounds.x + 21.5 - videoBounds.x, squareBounds.y + 21.5 - videoBounds.y]
+		const halfVideoWidth = this.videoSprite.width / 2;
+		const halfVideoHeight = this.videoSprite.height / 2;
 
+		// Tracking coordinates of top left corner of square frame, adjusting for video sprite position so (0,0) is the top left of the video
+		const frameTopLeftCoordinate = [this.squareGraphic.position.x - (this.squareGraphic.sideLength / 2) + halfVideoWidth, 
+			this.squareGraphic.position.y - (this.squareGraphic.sideLength / 2) + halfVideoHeight];
 
+		// Tracking coordinates of the center of the radius calculation, adjusting for video sprite position so (0,0) is the top left of the video
+		const radiusCoordinate = [this.radiusGraphic.position.x + halfVideoWidth, this.radiusGraphic.position.y + halfVideoHeight];
 
-		//tempory console output of coordinates
-		//square frame : + 25 of the hover, -3.5 for line thickness - videoBounds so postion is relative to video sprite
 		console.log('Logging coordinates...');
-		console.log({frame: [frameTopLeft[0], frameTopLeft[1]],
-					radius: [this.radiusGraphic.x, this.radiusGraphic.y],
-					sensor1: [this.sensor1.x, this.sensor1.y],
-					sensor2: [this.sensor2.x, this.sensor2.y],
-					sensor3: [this.sensor3.x, this.sensor3.y],
-
-
-
+		console.log({frame: [frameTopLeftCoordinate[0], frameTopLeftCoordinate[1]],
+					radius: [radiusCoordinate[0], radiusCoordinate[1]],
+					sensor1: [this.sensor1.x + halfVideoWidth, this.sensor1.y + halfVideoHeight],
+					sensor2: [this.sensor2.x + halfVideoWidth, this.sensor2.y + halfVideoHeight],
+					sensor3: [this.sensor3.x + halfVideoWidth, this.sensor3.y + halfVideoHeight],
 
 		})
 

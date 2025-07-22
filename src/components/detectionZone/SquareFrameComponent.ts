@@ -20,7 +20,7 @@ export class SquareFrameComponent extends AXContainer {
 	protected hoverLeft: AXGraphics;
 	protected hoverBottom: AXGraphics;
 	protected hoverRight: AXGraphics;
-	protected sideLength: number;
+	public sideLength: number;
 	protected isMoving: boolean = false;
 	private lineColor: PIXI.ColorSource = 0x00ffff;
 	private dragOffset: PIXI.Point | null = null;
