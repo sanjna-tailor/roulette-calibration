@@ -211,17 +211,22 @@ export class MainSceneComponent extends AXContainer {
 		const frameTopLeftCoordinate = [this.squareGraphic.position.x - (this.squareGraphic.sideLength / 2) + halfVideoWidth, 
 			this.squareGraphic.position.y - (this.squareGraphic.sideLength / 2) + halfVideoHeight];
 
-		// Tracking coordinates of the center of the radius calculation, adjusting for video sprite position so (0,0) is the top left of the video
-		const radiusCoordinate = [this.radiusGraphic.position.x + halfVideoWidth, this.radiusGraphic.position.y + halfVideoHeight];
+		// Tracking coordinates of the center of the radius and three sensor calculations
+		// adjusting for video sprite position so (0,0) is the top left of the square frame
+		const radiusCoordinate = [this.radiusGraphic.position.x + halfVideoWidth - frameTopLeftCoordinate[0], 
+			this.radiusGraphic.position.y + halfVideoHeight - frameTopLeftCoordinate[1]];
+
+		const sensor1Coordinate = [this.sensor1.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor1.y + halfVideoHeight - frameTopLeftCoordinate[1]];
+		const sensor2Coordinate = [this.sensor2.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor2.y + halfVideoHeight - frameTopLeftCoordinate[1]];
+		const sensor3Coordinate = [this.sensor3.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor3.y + halfVideoHeight - frameTopLeftCoordinate[1]];
 
 		console.log('Logging coordinates...');
-		console.log({frame: [frameTopLeftCoordinate[0], frameTopLeftCoordinate[1]],
-					radius: [radiusCoordinate[0] - frameTopLeftCoordinate[0], radiusCoordinate[1] - frameTopLeftCoordinate[1]],
-					sensor1: [this.sensor1.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor1.y + halfVideoHeight - frameTopLeftCoordinate[1]],
-					sensor2: [this.sensor2.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor2.y + halfVideoHeight - frameTopLeftCoordinate[1]],
-					sensor3: [this.sensor3.x + halfVideoWidth - frameTopLeftCoordinate[0], this.sensor3.y + halfVideoHeight - frameTopLeftCoordinate[1]],
-
-		})
+		console.log({frame: [Math.floor(frameTopLeftCoordinate[0]), Math.floor(frameTopLeftCoordinate[1])],
+					radius: [Math.floor(radiusCoordinate[0]), Math.floor(radiusCoordinate[1])],
+					sensor1: [Math.floor(sensor1Coordinate[0]), Math.floor(sensor1Coordinate[1])],
+					sensor2: [Math.floor(sensor2Coordinate[0]), Math.floor(sensor2Coordinate[1])],
+					sensor3: [Math.floor(sensor3Coordinate[0]), Math.floor(sensor3Coordinate[1])]
+				});
 
 	// 	const url = 'https://stream-coords.sds.red/coordinates';
 
